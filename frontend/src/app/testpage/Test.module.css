@@ -1,0 +1,152 @@
+.test{
+    height: 100%;
+    width: 100%;
+    padding-top: 70px; 
+    background-color: transparent;
+    display: flex; 
+    flex-direction: column;
+}
+.testinner{
+    height: 70vh;
+    width: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    background-color: #f1f1f1;
+} 
+
+.testinner div{
+    height:90%; 
+    width: 75%;
+    border-radius: 0px 50px 0px 50px;
+    background-image: linear-gradient(to bottom right, #2c2f64, #484b86, #5c5f97); 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0px 150px 20px 50px;
+    gap: 20px;
+} 
+ 
+.testinner div h1{
+    color: wheat;
+    font-size: 75px;
+    text-align: start;
+} 
+
+.testinner div h2{
+    color: #242424;
+    text-align: start;
+    font-size: 20px;
+} 
+
+.testinner div h4{
+    color:#e7e7e7;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: start;
+}  
+ 
+/* 2nd section */ 
+ 
+.categories{
+    height: 100vh;
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    align-items: start;
+    justify-content: center; 
+    padding: 0px 150px;
+    background-color: #f1f1f1;
+} 
+ 
+.categories h1{
+    font-size: 60px;
+    margin-left: 60px;
+}
+
+.categories div{
+    margin-top: 30px;
+    height: 75%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: 125px 125px 125px;
+} 
+.categories div div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}  
+
+.categories div div a{ 
+    height: fit-content;
+    width: 300px;
+    border-radius: 25px;
+    text-decoration: none;
+    background-image: linear-gradient(to bottom right, #2c2f64, #484b86, #5c5f97); 
+    padding: 20px; 
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+} 
+
+.categories div div a:hover{
+    box-shadow: 0 0 20px 5px rgba(92, 95, 151,0.75);
+} 
+ 
+/* 3rd section */
+ 
+.work{
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;  
+    padding: 30px 0px;
+} 
+ 
+.work div{ 
+    height: fit-content;
+    width:75%;
+    padding: 30px 100px 30px 50px; 
+    background-color: rgb(163, 203, 222);
+    display: flex; 
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;  
+    gap:20px;
+    border-radius: 25px;   
+    color: rgb(0, 128, 255); 
+} 
+ 
+.work h1{
+    font-size: 50px;
+}
+
+.work button {
+    height: fit-content;
+    width: fit-content;
+    border-radius: 25px;
+    text-decoration: none;
+    background-color: rgb(92, 95, 151); 
+    padding: 20px; 
+    font-size: 20px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease; 
+    border: 0px;
+}
+
+.work button:hover{
+    box-shadow: 0 0 20px 5px rgba(92, 95, 151,0.75);
+}
+
+.work p{
+    color: #4b4b4b;
+    font-size: 20px;
+    font-weight: 400;
+}

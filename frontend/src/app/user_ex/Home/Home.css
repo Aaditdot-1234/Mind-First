@@ -1,0 +1,616 @@
+body, html{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background-image: url('/background.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.home {
+    height: 100vh;
+    width: 100%;
+    z-index: -1;
+}
+
+.contentWrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.underlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home .contentWrapper .underlay img {
+    height: 100%;
+    width: 50%;
+}
+
+.underlay div {
+    height: 100%;
+    width: 50%;
+    background-color: lightsteelblue;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+    background-image: linear-gradient(to right, rgba(31, 28, 60, 0.8), rgba(31, 28, 60, 0.65), rgba(31, 28, 60, 0.55), rgba(31, 28, 60, 0.2), rgba(31, 28, 60, 0));
+    z-index: 1;
+}
+
+.overlay div {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 0px 20px;
+    color: white;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.overlay div p:nth-child(1) {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: left;
+    color: rgb(0, 110, 255);
+    margin: 10px 0px;
+}
+.overlay div p:nth-child(3) {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+    color: rgb(216, 216, 216);
+    padding-right: 15px;
+}
+.overlay div h2 {
+    font-size: 60px;
+    margin: 0;
+    text-align: left;
+}
+
+.overlay button {
+    font-size: 28px;
+    font-weight: 600;
+    padding: 13px;
+    border: 0px;
+    border-radius: 27px;
+    color: white;
+    background-color: #646cff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 50px;
+    transition: box-shadow 0.3s ease; 
+}
+
+.overlay button:hover{
+    box-shadow: 0 0 20px 5px rgba(92, 95, 151,0.75);
+}
+
+.overlay div button img {
+    height: 25px;
+    width: 25px;
+}
+
+
+/* 2nd section */
+
+.contentWrapper2{
+    height: 120%;
+    width: 100%;
+    /* background-image: linear-gradient(to left, rgb(95, 86, 174, 1), rgba(95, 86, 174, 0.85), rgba(95, 86, 174, 0.75), rgba(95, 86, 174, 0.75), rgba(95, 86, 174, 0.65), rgba(95, 86, 174, 0.5), rgba(95, 86, 174, 0.5), rgba(95, 86, 174, 0.25)); */
+    background-color: transparent;
+    display: flex;
+} 
+
+.imgContainer {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imgContainer div{
+    height: 85%;
+    width: 50%;
+    background-color: white;
+    border-radius: 35px;
+    display: flex;
+    align-items: center;
+    margin-left: 300px;
+    box-shadow: 10px 10px 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.imgContainer div img{
+    height:85%;
+    width: 100%;
+}
+
+.contentWrapper2 div:nth-child(2){
+    height: 85%;
+    width: 0%;
+    border: 2px solid #646cff;
+    margin-top: 70px;
+}
+
+.aim{
+    height: 100%;
+    width: 50%; 
+    padding: 100px 0px 40px;
+} 
+
+.aim div:nth-child(1){
+    height: fit-content;
+    width: 100%;
+    margin: 0%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+} 
+
+.aim div:nth-child(1) div{
+    height: 0%;
+    width: 30px; 
+    border: 2px solid #646cff82;
+    margin-left: 30px;
+}   
+
+.aim div:nth-child(1) h2{
+    color: #646cff82;
+    font-size: 20px;
+    font-weight: 400;
+}    
+
+.aim div:nth-child(2){
+    height: fit-content;
+    width: 100%;
+    margin: 0%; 
+    border: 0;
+    gap: 10px;
+} 
+.aim div:nth-child(2) h1{
+    font-size: 50px;
+    padding: 5px 200px 5px 30px;
+    color:black
+} 
+.aim div:nth-child(2) p{
+    font-size: 20px;
+    padding: 5px 200px 5px 30px;
+    color:rgb(153, 153, 153)
+} 
+
+.aim div:nth-child(3){
+    height: fit-content;
+    width: 100%;
+    margin: 0%; 
+    display: flex;
+    gap: 10px;
+    margin: 30px 0px; 
+}  
+
+.aim div:nth-child(3) div{
+    height: 50px;
+    width: 0; 
+    border: 2px solid #646cff82;
+    margin-left: 30px;
+}
+.aim div:nth-child(3) p{
+    font-size: 20px;
+    padding: 0px 100px 0px 10px;
+    font-weight: 500;
+    color:rgb(153, 153, 153);
+}
+
+.aim div:nth-child(4){
+    height: 25%;
+    width: 100%;
+    background-color: white;
+    margin: 0px 0px 0px -100px;
+    border-radius: 30px; 
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}  
+
+.aim div:nth-child(4) div:nth-child(1){
+    height: 100%;
+    width: 50%;
+    padding: 10px;
+    background-image: linear-gradient(to bottom right, #2c2f64, #484b86, #5c5f97);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.aim div:nth-child(4) div:nth-child(1) h3{
+    font-size: 25px;
+    font-weight: 750;
+    color: black; 
+    text-align: left;
+    margin-left: 15px;
+}
+.aim div:nth-child(4) div:nth-child(1) p{
+    font-size: 20px;
+    font-weight: 400;
+    color: rgb(153, 153, 153);
+    padding:0px 0px 15px 15px;
+}
+
+.aim div:nth-child(4) div:nth-child(2){
+    height: 100%;
+    width: 45%;
+    background-color: white;
+    border-radius: 25px;
+} 
+.aim div:nth-child(4) div:nth-child(2) video {
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+}
+ 
+
+/* 5th section */
+
+.news {
+    position: relative;
+    height: 130%; 
+    width: 100%;
+    background-color: white;
+    padding-top: 80px;
+} 
+
+.underlay2 {
+    position: absolute;
+    height: 100%;
+    width: 100%; 
+} 
+.underlay2 img{
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+.overlay2 {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    background-image: linear-gradient(to top, white 40%, rgba(255, 255, 255, 0.85) ,rgba(255, 255, 255));
+}
+
+.newsinner{
+    height: fit-content;
+    width: 100%;
+    margin: 0%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 150px;
+}
+
+.newsinner div{
+    height: 0%;
+    width: 50px; 
+    border: 2px solid #646cff82;
+    margin: 0%;
+}   
+.news div:nth-child(1) span{
+    color: #646cff82;
+    font-size: 30px;
+    font-weight: 400;
+} 
+ 
+.news h1{
+    font-size: 50px;
+    margin: 0px 450px 10px 150px;     
+}  
+
+/* 6th section */
+
+.random1{
+    position: relative;
+    height: 50%;
+    width: 100%; 
+    background-image: linear-gradient(to top, antiquewhite,white 60%);
+    display: flex;
+    align-items: start;
+}
+
+.random1inner{
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    height: 50%;
+    width: 50%;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.2), rgba(0,0,0,0.05), rgba(0,0,0,0));
+}
+
+/* 8th section */
+
+.random2{
+    position: relative;
+    height: 20%;
+    width: 100%; 
+    background-image: linear-gradient(to bottom, antiquewhite,white);
+    display: flex;
+    align-items: start;
+} 
+
+.random2inner{
+    position: absolute;
+    z-index: 2;
+    height: 100%;
+    width: 50%;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.4), rgba(0,0,0,0.2), rgba(0,0,0,0.05), rgba(0,0,0,0));
+}
+
+
+/* 9th section */
+
+.appointment {
+    position: relative;
+    height: 230%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+} 
+
+.appointmentinner {
+    position: relative;
+    height: 80%;
+    width: 100%;
+} 
+
+.appointmentinner > div:nth-child(1) {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image:url('/consultation.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.appointmentinner > div:nth-child(2) {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(to right, rgba(133, 46, 255, 0.75), rgba(125, 60, 255, 0.6), rgba(110, 84, 255, 0.75));
+    z-index: 2;
+}
+
+.contacts{
+    height: 150%;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    background-color: #2c2f64;
+}
+
+.contacts div{
+    height: 50%;
+    width: 100%;
+    background-color: #2c2f64;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts div div:nth-child(1){
+    height: 60%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.contacts div div:nth-child(1) h2{
+    width: 50%;
+    font-size: 30px;
+}
+
+.team{
+    height: 40%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacts .team p{
+    width: 50%;
+    font-size: 35px;
+    color: #f2f2f2;
+    text-align: center;
+    font-weight: 500;
+}
+
+.contacts .team div {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.contacts .team div div{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-image: url('/t1.jpeg');
+    background-size: cover;
+    margin: 0px 5px;
+}
+
+.center{
+    height: 100px !important;
+    width: 100px !important;
+}
+
+.left{
+    height: 80px !important;
+    width: 80px !important;
+}
+
+.right{
+    height: 80px !important;
+    width: 80px !important;
+
+}
+
+.appointmentform{
+    position: absolute;
+    z-index: 4;
+    height: 100%;
+    width: 100%;
+    top: 350px;
+    left: 150px;
+} 
+
+.motiondiv{
+    height: 40%;
+    width: 80%;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 10px 10px 10px 15px rgba(0, 0, 0, 0.1);
+}  
+
+.appointform1 {
+    height: 100%;
+    width: 40%;
+    background-color: #f2f2f2;
+    border-radius: 25px 0px 0px 25px;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.appointform1 > div{
+    height: 20%;
+    width: 80%;
+} 
+.appointform1 p{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.info1{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.info2{
+    height: 0 !important;
+    width: 80% !important;
+    border-bottom: #b1b1b1 solid 1px;
+    margin-bottom: 10px;
+}
+
+.form{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.appointform2{
+    height: 350px;
+    width: 100%;
+    border-radius: 0px 25px 25px 0px;
+    box-shadow: none;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 80px 80px 80px;
+    column-gap: 30px;
+    padding: 70px 90px 0px 90px;
+} 
+
+.appointform2 div {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 10px;
+}
+.appointform2 input{
+    height: 40px;
+    width: 250px;
+    background-color: rgb(245, 245, 245);
+    border: rgb(185, 185, 185) solid 1px;
+    border-radius: 10px;
+    padding: 10px;
+}
+.form button{
+    display: flex;
+    margin-top: 20px;
+    font-size: 20px; 
+    padding: 10px 25px; 
+    border: 0px; 
+    border-radius: 30px;   
+    color: white;
+    background-color: #646cff;
+    gap: 10px;
+} 
+.form img{
+    height: 30px;
+    width: 30px ;
+}
+textarea {
+    height: 100px;
+    width: 400px; 
+    padding: 10px; 
+    font-size: 16px;
+    background-color: rgb(245, 245, 245);
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    resize: none;
+    overflow-wrap: break-word; 
+    margin-top: 10px;
+}
