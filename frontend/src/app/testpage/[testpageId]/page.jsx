@@ -6,6 +6,7 @@ import questionsData from '@/app/lib/QuestionsData';
 import ExtraquestionsData from '@/app/lib/ExtraQuestionsData';
 import ExtraQuestions from '@/app/lib/extraQuestions';
 import Recommendation from '@/app/recommendation/page';
+import Appointment from '@/app/Appointment/page';
 
 const TestData = () => {
   const { testpageId } = useParams();
@@ -22,6 +23,7 @@ const TestData = () => {
   const [result, setResult] = useState('');
   const [timing, setTiming] = useState();
   const [impact, setImpact] = useState();
+  const [appointment, setAppointment] = useState();
 
   const handleOptionClick = (questionId, selectedoption) => {
     const newSelectedOptions = [...selectedOptions];
@@ -63,40 +65,56 @@ const TestData = () => {
       if (total <= 4) setResult(`Minimal ${testpageId}`);
       else if (total <= 9) setResult(`Mild ${testpageId}`);
       else if (total <= 14) setResult(`Moderate ${testpageId}`);
-      else if (total <= 19) setResult(`Severe ${testpageId}`);
-      else setResult(`Very Severe ${testpageId}`);
+      else if (total <= 19) {
+        setResult(`Severe ${testpageId}`) 
+        setAppointment(true)
+      }
+      else {
+        setResult(`Very Severe ${testpageId}`)
+        setAppointment(true)
+      }
     }
     
     else if (testpageId === 'anxiety') {
       if (total <= 4) setResult(`Minimal ${testpageId}`);
       else if (total <= 9) setResult(`Mild ${testpageId}`);
       else if (total <= 14) setResult(`Moderate ${testpageId}`);
-      else if (total <= 19) setResult(`Severe ${testpageId}`);
-      else setResult(`Very Severe ${testpageId}`);
+      else if (total <= 19) {
+        setResult(`Severe ${testpageId}`) 
+        setAppointment(true)
+      }
+      else {
+        setResult(`Very Severe ${testpageId}`)
+        setAppointment(true)
+      }
     }
     
     else if (testpageId === 'stress') {
       if (total <= 3) setResult(`Minimal ${testpageId}`);
       else if (total <= 7) setResult(`Mild ${testpageId}`);
       else if (total <= 11) setResult(`Moderate ${testpageId}`);
-      else setResult(`Severe ${testpageId}`);
+      else {
+        setResult(`Severe ${testpageId}`)
+        setAppointment(true)
+      }
     } 
     
     else if (testpageId === 'bipolar') {
       if (total >= 7 && timing === 1 && impact >= 1) {
         setResult("Your responses indicate symptoms consistent with bipolar disorder. Further evaluation by a mental health professional is recommended.");
+        setAppointment(true)
       } else {
         setResult("Your responses do not indicate significant symptoms of bipolar disorder based on the MDQ.");
       }
     } 
     
     else if (testpageId === 'ptsd') {
-      if (total >= 3) setResult(`High risk for ${testpageId}. Please seek further evaluation.`);
+      if (total >= 3) setResult(`High risk for ${testpageId}. Please seek further evaluation.`), setAppointment(true);
       else setResult(`Low risk for ${testpageId}. Further evaluation may still be recommended if concerns persist.`);
     } 
     
     else if (testpageId === 'adhd') {
-      if (total >= 4) setResult(`Consider seeking professional evaluation.`);
+      if (total >= 4) setResult(`Consider seeking professional evaluation.`), setAppointment(true);
       else setResult(`No immediate concern based on self-report.`);
     }
   };
@@ -192,6 +210,18 @@ const TestData = () => {
       ): (
         <div></div>
       )}
+      {appointment && 
+        <div className='relative h-screen w-full'>
+          <Appointment
+            initial={{ opacity: 0, x: +100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1, duration: 3, type: 'spring', stiffness: 50 }}
+            viewport={{ once: true, amount: 0.5 }}           
+            display={'absolute h-full w-full left-[70px]'} 
+            className={'h-[90%] w-[90%]'}
+          />
+        </div>
+      }
       <Description />
     </div>
   );

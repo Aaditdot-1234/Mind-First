@@ -61,6 +61,7 @@ module.exports = {
   		},
   		boxShadow: {
   			'2': '10px 10px 15px 3px rgba(0, 0, 0, 0.15)',
+  			'appointment': '10px 10px 10px 15px rgba(0, 0, 0, 0.1)',
   			'3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
   			glow: '0 0 20px 5px rgba(92, 95, 151,0.75)'
   		},

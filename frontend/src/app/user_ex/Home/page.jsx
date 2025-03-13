@@ -5,10 +5,10 @@ import './Home.css'
 import { motion } from 'framer-motion';
 import Newspaper from '../Home_page_Components/Newspaper'
 import Brain from '../Home_page_Components/Brain';
-import Therapist from '../Home_page_Components/Therapist';
 import Work from '../Home_page_Components/Working';
 import Link from 'next/link';
 import Description from '@/app/user_ex/Home_page_Components/Description';
+import Appointment from '@/app/Appointment/page';
 
 const Home = () => {
   return (
@@ -126,7 +126,7 @@ const Home = () => {
                 style={{
                   fontSize:'20px'
                 }}
-              >Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
+                >Lorem ipsum dolor, sit amet consectetur adipisicing elit.</span>
             </div>
             <div className='team'>
               <p>Our Team</p>
@@ -141,84 +141,14 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className='appointmentform'>
-          <motion.div
-              initial={{ opacity:0, x :+100}}
-              whileInView={{ opacity:1, x : 0}}
-              transition={{ delay:1, duration: 3, type: 'spring', stiffness: 50}}
-              viewport={{ once: true, amount: 0.5 }}  
-              className='motiondiv'          
-          >
-            <div className='appointform1'>
-              <div className='info1'>
-                <h1>Need more help?</h1>
-                <p>Consequat pede primis placerat senectus hac molestie et ultricies eros</p>
-              </div>
-              <div className='info2'></div>
-              <div>
-                <h1>Customer Service</h1>
-                <p>888-7337-234</p>
-              </div>
-              <div>
-                <h1>Ticket Support</h1>
-                <p>Send Now!</p>
-              </div>
-              <div>
-                <h1>Opening Hours</h1>
-                <p>Monday – Saturday</p>
-                <p>(10:30 AM – 7:00 PM)</p>
-              </div>
-            </div>
-            <div className='form'>
-              <div className='appointform2'>
-                <div>
-                  <h4>First name</h4>
-                  <input type="text" placeholder='First Name'/>
-                </div>
-                <div>
-                  <h4>Last name</h4>
-                  <input type="text" placeholder='Last Name'/>
-                </div>
-                <div>
-                  <h4>Phone</h4>
-                  <input type="text" placeholder='Phone'/>
-                </div>
-                <div>
-                  <h4>E-Mail</h4>
-                  <input type="text" placeholder='E-mail'/>
-                </div>
-                <div>
-                  <h4>Date</h4>
-                  <input type="text" placeholder='dd-mm-yyyy'/>
-                </div>
-                <div>
-                  <h4>Time</h4>
-                  <input type="text"/>
-                </div>
-              </div>
-              <div 
-                style={{
-                  display:'flex',
-                  flexDirection:'column',
-                  gap:'10px',
-                  marginLeft:'90px',
-                  marginTop: '0px'
-                }}
-              >
-                <div>
-                  <h4>Message</h4>
-                  <textarea placeholder='Message'></textarea>
-                </div>
-                <div>
-                  <button>
-                    <img src="/appoint.png" alt="not found" />
-                    Book an appointment
-                  </button>
-                </div>
-              </div>
-            </div>
-          </motion.div>  
-        </div>  
+        <Appointment
+          initial={{ opacity: 0, x: +100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ delay: 1, duration: 3, type: 'spring', stiffness: 50 }}
+          viewport={{ once: true, amount: 0.5 }}
+          display = {'absolute z-[4] h-full w-full flex items-center justify-center'}
+          className={'mb-[200px]'} 
+          />
       </div>
       <Description/>
     </div> 
