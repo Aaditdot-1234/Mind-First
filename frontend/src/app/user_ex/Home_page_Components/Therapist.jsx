@@ -7,20 +7,23 @@ const Therapist = () => {
   const [activeBlock, setActiveBlock] = useState('Block1');  
    
   const data = [
-    {id:'Block1', name:'Martin Seligman', content:'Block1', color:'lightyellow', image:'/martin.jpg'},
-    {id:'Block2', name:'Steven Pinker', content:'Block2', color:'lightgreen', image:'/steven.jpg'},
-    {id:'Block3', name:'Daniel Kahneman', content:'Block3', color:'lightblue', image:'/daniel.webp'},
-    {id:'Block4', name:'Susan Fiske', content:'Block4', color:'#dacfff', image:'/susan.jpg'}
+    {id:'Block1', name:'Martin Seligman', content:'Block1', image:'/martin.jpg'},
+    {id:'Block2', name:'Steven Pinker', content:'Block2', image:'/steven.jpg'},
+    {id:'Block3', name:'Daniel Kahneman', content:'Block3', image:'/daniel.webp'},
+    {id:'Block4', name:'Susan Fiske', content:'Block4', image:'/susan.jpg'}
   ]  
 
-  const activeColor = data.find(block => block.id === activeBlock)?.color || 'white';
+  const activeImage = data.find(block => block.id === activeBlock)?.image
 
   return (
     <div 
       id='therapist'
       className='therapist'
       style={{
-        backgroundColor: activeColor
+        backgroundImage: `linear-gradient(to right, rgba(133, 46, 255, 0.75), rgba(125, 60, 255, 0.6), rgba(110, 84, 255, 0.75)), url(${activeImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       }}
     > 
       <div className='therapistinner'>

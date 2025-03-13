@@ -10,14 +10,14 @@ const processSteps = [
     },
     {
       id: 2,
-      title: "Step 2: Chatbot Conversation",
-      description: "Engage with our chatbot, which will analyze your responses and suggest potential disorders.",
+      title: "Step 2: Pre-Screening",
+      description: "Before giving the Questionnaire complete the pre-screening process.",
       imageUrl: "/chat.png"
     },
     {
       id: 3,
       title: "Step 3: Questionnaire",
-      description: "Complete a brief questionnaire to validate the chatbot's suggestions.",
+      description: "Complete a brief questionnaire to validate the pre-screening suggestions.",
       imageUrl: "/question.png" 
     },
     {

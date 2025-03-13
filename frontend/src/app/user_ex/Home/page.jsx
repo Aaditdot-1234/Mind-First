@@ -89,9 +89,8 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <br /><br />
+      <div className='bg-trans h-[50px] w-full'></div>
       <Work/>
-      <Therapist/> 
       <div id='news' className='news'>
         <div className='underlay2'>
           <img src="/news.jpg" alt="not found" />

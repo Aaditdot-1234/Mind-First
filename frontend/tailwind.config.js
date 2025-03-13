@@ -51,6 +51,9 @@ module.exports = {
   			},
   			button: 'rgb(92, 95, 151)'
   		},
+		backgroundColor: {
+			trans: 'rgba(242, 242, 242, 0.5)'
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
@@ -63,7 +66,8 @@ module.exports = {
   		},
   		backgroundImage: {
   			'custom-gradient': 'linear-gradient(to top, rgb(133, 46, 255), white, white',
-  			'custom-gradient2': 'linear-gradient(to bottom right, #2c2f64, #484b86, #5c5f97)'
+  			'custom-gradient2': 'linear-gradient(to bottom right, #2c2f64, #484b86, #5c5f97)',
+  			'custom-gradient3': 'linear-gradient(to right, rgba(133, 46, 255, 0.75), rgba(125, 60, 255, 0.6), rgba(110, 84, 255, 0.75))',
   		}
   	}
   },
