@@ -8,7 +8,7 @@ import Brain from '../Home_page_Components/Brain';
 import Work from '../Home_page_Components/Working';
 import Link from 'next/link';
 import Description from '@/app/user_ex/Home_page_Components/Description';
-import Appointment from '@/app/Appointment/page';
+import Appointment from '@/app/user_ex/Appointment/page';
 
 const Home = () => {
   return (

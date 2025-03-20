@@ -6,7 +6,7 @@ import questionsData from '@/app/lib/QuestionsData';
 import ExtraquestionsData from '@/app/lib/ExtraQuestionsData';
 import ExtraQuestions from '@/app/lib/extraQuestions';
 import Recommendation from '@/app/recommendation/page';
-import Appointment from '@/app/Appointment/page';
+import Appointment from '@/app/user_ex/Appointment/page';
 
 const TestData = () => {
   const { testpageId } = useParams();
