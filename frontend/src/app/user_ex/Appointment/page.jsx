@@ -4,19 +4,24 @@ import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { CalendarIcon, ChevronDownCircle } from 'lucide-react';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@radix-ui/react-hover-card";
+import { useSession } from 'next-auth/react';
 
 const Appointment = ({ initial, whileInView, transition, viewport, className, display}) => {
+  const { data: session } = useSession();
   const today = new Date();
   const options = { day: 'numeric', month: 'long', year: 'numeric' };
   const formattedDate = today.toLocaleDateString('en-US', options);
   const [date, setDate] = useState(formattedDate)
   const [open, setOpen] = useState(false)
   const [doctors, setDoctors] = useState([])
+  const [doctorname, setDoctorName] = useState('')
   const [name, setName] = useState('')
   const [timing, setTiming] = useState('')
+  const [message, setMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetch("/api/Doctor") 
+    fetch("/actions/Doctor_fetch") 
       .then((response) => response.json())
       .then((data) => {
         setDoctors(data);
@@ -28,7 +33,7 @@ const Appointment = ({ initial, whileInView, transition, viewport, className, di
     if (selectedDate) {
       const dayName = selectedDate.toLocaleDateString("en-US", { weekday: "long" });
       
-      const selectedDoctor = doctors.find(doc => doc.doctorName === name);
+      const selectedDoctor = doctors.find(doc => doc.doctorName === doctorname);
       
       if (selectedDoctor && !selectedDoctor.availableDays.includes(dayName)) {
         alert(`Invalid date selected! Appointments are only available on ${selectedDoctor.availableDays.join(", ")}.`);
@@ -41,7 +46,57 @@ const Appointment = ({ initial, whileInView, transition, viewport, className, di
     }
   };
   
-  console.log(doctors)
+  const handleBookAppointment = async () => {
+    setIsLoading(true)
+    try {
+      if (!session?.user?.email || !name || !date || !timing) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+  
+      const selectedDoctor = doctors.find((doc) => doc.doctorName === doctorname);
+      if (!selectedDoctor) {
+        alert("Please select a valid doctor.");
+        return;
+      }
+  
+      const appointmentData = {
+        userEmail: session.user.email, 
+        userName: name,   
+        doctorId: selectedDoctor.id,   
+        doctorName: selectedDoctor.doctorName,
+        date: new Date(date),         
+        timing: timing,               
+        message: message || "No message provided", 
+      };
+  
+      const response = await fetch("/actions/Appointment_post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(appointmentData),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json(); 
+        throw new Error(errorData.error || "Failed to book appointment");
+      }
+  
+      const result = await response.json();
+      console.log("Appointment booked successfully:", result);
+      alert("Appointment booked successfully!");
+      setName(""); 
+      setDate(today.toLocaleDateString("en-US", options)); 
+      setTiming(""); 
+      setMessage("");
+    } catch (error) {
+      console.error("Error booking appointment:", error);
+      alert("Failed to book appointment. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className={`${display || ''}`}>
@@ -78,11 +133,38 @@ const Appointment = ({ initial, whileInView, transition, viewport, className, di
           <div className="h-[350px] w-full rounded-r-[25px] grid grid-cols-2 grid-rows-3 gap-x-8 px-[90px] pt-[70px]">
             <div className="flex flex-col gap-2">
               <h4 className="text-lg font-medium">Name</h4>
-              <input type="text" placeholder="First Name" className="h-10 w-[250px] bg-gray-100 border border-gray-400 rounded-lg p-2" />
+              <input 
+                type="text" 
+                value={name}
+                onChange={(e) => setName(e.target.value)}  
+                className="h-10 w-[250px] bg-gray-100 border border-gray-400 rounded-lg p-2" 
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <h4 className="text-lg font-medium">Phone</h4>
+              <input 
+                type="text" 
+                placeholder="Phone" 
+                className="h-10 w-[250px] bg-gray-100 border border-gray-400 rounded-lg p-2" 
+              />
+            </div>
+            <div className="flex flex-col gap-2">
+              <h4 className="text-lg font-medium">E-Mail</h4>
+              <input 
+                type="text" 
+                value={session?.user?.email || ''} 
+                readOnly
+                className="h-10 w-[250px] bg-gray-100 border border-gray-400 rounded-lg p-2" 
+              />
             </div>
             <div className="flex flex-col gap-2 relative">
               <h4 className="text-lg font-medium">Doctors</h4>
-              <input type="text" value={name} className="h-10 w-[250px] bg-gray-100 border border-gray-400 rounded-lg p-2" />
+              <input 
+                type="text" 
+                value={doctorname}
+                readOnly 
+                className="h-10 w-[250px] bg-gray-100 border border-gray-400 rounded-lg p-2" 
+              />
               <HoverCard>
                 <HoverCardTrigger>
                   <button className="absolute right-2 top-1/2 transform -translate-y-1 -translate-x-1/3">
@@ -93,7 +175,7 @@ const Appointment = ({ initial, whileInView, transition, viewport, className, di
                   <div className="flex flex-col">
                     {doctors.length > 0 ? (
                       doctors.map((doctor) => (
-                        <div onClick={()=>{setName(doctor.doctorName)}} key={doctor.id} className="p-2 hover:bg-gray-200 rounded">
+                        <div onClick={()=>{setDoctorName(doctor.doctorName)}} key={doctor.id} className="p-2 hover:bg-gray-200 rounded">
                           {doctor.doctorName}
                         </div>
                       ))
@@ -104,14 +186,6 @@ const Appointment = ({ initial, whileInView, transition, viewport, className, di
                 </HoverCardContent>
               </HoverCard>
             </div>
-            <div className="flex flex-col gap-2">
-              <h4 className="text-lg font-medium">Phone</h4>
-              <input type="text" placeholder="Phone" className="h-10 w-[250px] bg-gray-100 border border-gray-400 rounded-lg p-2" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <h4 className="text-lg font-medium">E-Mail</h4>
-              <input type="text" placeholder="E-mail" className="h-10 w-[250px] bg-gray-100 border border-gray-400 rounded-lg p-2" />
-            </div>
             {name !== '' ? (
                 <div className="flex flex-col gap-2 relative">
                   <h4 className="text-lg font-medium">Date</h4>
@@ -121,14 +195,14 @@ const Appointment = ({ initial, whileInView, transition, viewport, className, di
                       value={date}
                       readOnly
                       className="h-10 w-[250px] bg-gray-100 border border-gray-400 rounded-lg p-2"
-                      />
+                    />
                   </div>
                   <Popover open={open} onOpenChange={setOpen}>
                     <PopoverTrigger asChild>
                       <button
                         onClick={() => setOpen(!open)}
                         className="absolute right-2 top-1/2 transform -translate-y-1 -translate-x-1/3"
-                        >
+                      >
                         <CalendarIcon className="h-6 w-6 text-black" />
                       </button>
                     </PopoverTrigger>
@@ -137,7 +211,7 @@ const Appointment = ({ initial, whileInView, transition, viewport, className, di
                         mode="single"
                         selected={date}
                         onSelect={handleDateSelect}
-                        />
+                      />
                     </PopoverContent>
                   </Popover>
                 </div>
@@ -155,13 +229,28 @@ const Appointment = ({ initial, whileInView, transition, viewport, className, di
           <div className="flex flex-col gap-3 ml-[90px]">
             <div className="flex flex-col gap-2">
               <h4 className="text-lg font-medium">Message</h4>
-              <textarea placeholder="Message" className="h-[100px] w-[400px] bg-gray-100 border border-gray-400 rounded-lg p-2 text-md resize-none"></textarea>
+              <textarea placeholder="Message"  
+                value={message}
+                onChange={(e) => setMessage(e.target.value)} 
+                className="h-[100px] w-[400px] bg-gray-100 border border-gray-400 rounded-lg p-2 text-md resize-none"
+              >
+              </textarea>
             </div>
             <div>
-              <button className="flex items-center mt-5 text-lg font-semibold px-6 py-3 rounded-full text-white bg-indigo-500 gap-2 hover:bg-indigo-600">
-                <img src="/appoint.png" alt="icon" className="h-6 w-6" />
-                Book an appointment
-              </button>
+            <button
+              onClick={handleBookAppointment}
+              disabled={isLoading}
+              className="flex items-center mt-5 text-lg font-semibold px-6 py-3 rounded-full text-white bg-indigo-500 gap-2 hover:bg-indigo-600"
+            >
+              {isLoading ? (
+                "Booking..."
+              ) : (
+                <>
+                  <img src="/appoint.png" alt="icon" className="h-6 w-6" />
+                  Book an appointment
+                </>
+              )}
+            </button>
             </div>
           </div>
         </div>

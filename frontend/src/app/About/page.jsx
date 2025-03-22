@@ -10,7 +10,7 @@ const About = () => {
     const [showQuestion, setShowQuestion] = useState(false);
 
     useEffect(() => {
-        fetch("/api/Doctor") 
+        fetch("/actions/Doctor_fetch") 
           .then((response) => response.json())
           .then((data) => {
             setDoctors(data);
@@ -107,7 +107,7 @@ const About = () => {
                 </div>
             </div>
             <div className="h-screen w-full flex flex-col items-start justify-center px-[100px] mt-[50px]">
-                <h1 className="text-[60px] font-[600]">Collaorated Doctors:</h1>
+                <h1 className="text-[60px] font-[600]">Collaborated Doctors:</h1>
                 <div className="mt-[30px] h-[75%] w-full grid grid-cols-3 grid-rows-3">
                     {doctors.map((doc,index) => (
                     <motion.div
@@ -124,9 +124,9 @@ const About = () => {
                         className="flex items-center justify-center"
                     >
                         <div
-                        className="h-[80px] w-[325px] rounded-[25px] text-white font-semibold text-[20px] cursor-pointer transition-shadow duration-300 px-5 py-4 bg-custom-gradient2 hover:shadow-[0px_0px_20px_5px_rgba(92,95,151,0.75)] flex items-center justify-center"
+                            className="h-[80px] w-[325px] rounded-[25px] text-white font-semibold text-[20px] cursor-pointer transition-shadow duration-300 px-5 py-4 bg-custom-gradient2 hover:shadow-[0px_0px_20px_5px_rgba(92,95,151,0.75)] flex items-center justify-center"
                         >
-                        {doc.doctorName}
+                            {doc.doctorName}
                         </div>
                     </motion.div>
                     ))}

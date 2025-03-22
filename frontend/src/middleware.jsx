@@ -25,7 +25,7 @@ export async function middleware(request) {
 
     const session = await auth();
 
-    if (pathname.startsWith('/testpage') || pathname.startsWith('/recommendation')) {
+    if (pathname.startsWith('/testpage') || pathname.startsWith('/recommendation') || pathname.startsWith('/Profile')) {
         if (!session) {
             return NextResponse.redirect(new URL('/', request.url));
         }
@@ -43,5 +43,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-    matcher: ['/testpage/:path*', '/recommendation/:path*'],
+    matcher: ['/testpage/:path*', '/recommendation/:path*', '/Profile/:path*'],
 };

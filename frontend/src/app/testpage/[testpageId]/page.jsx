@@ -5,7 +5,7 @@ import Description from '@/app/user_ex/Home_page_Components/Description';
 import questionsData from '@/app/lib/QuestionsData';
 import ExtraquestionsData from '@/app/lib/ExtraQuestionsData';
 import ExtraQuestions from '@/app/lib/extraQuestions';
-import Recommendation from '@/app/recommendation/page';
+import Recommendation from '@/app/user_ex/recommendation/page';
 import Appointment from '@/app/user_ex/Appointment/page';
 
 const TestData = () => {

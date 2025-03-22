@@ -1,10 +1,50 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// // This is your Prisma schema file,
+// // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
-// prisma/schema.prisma
+// // prisma/schema.prisma
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model User {
+//   id       String  @id @default(uuid())
+//   name     String
+//   email    String  @unique
+//   appointments Appointment[]
+// }
+
+// model Doctor {
+//   id             String   @id @default(uuid())
+//   doctorName     String
+//   phone          Decimal  @unique
+//   email          String   @unique
+//   availableDays  String[] 
+//   timing         String?
+//   rating         Float
+//   image          String
+//   description    String?
+//   appointments   Appointment[]
+// }
+
+// model Appointment {
+//   id           String   @id @default(uuid())
+//   user         User     @relation(fields: [userId], references: [id])
+//   userId       String
+//   doctor       Doctor   @relation(fields: [doctorId], references: [id])
+//   doctorId     String
+//   Date         DateTime
+//   timing       String?
+//   message      String?
+// }
 
 generator client {
   provider = "prisma-client-js"
@@ -16,9 +56,13 @@ datasource db {
 }
 
 model User {
-  id       String  @id @default(uuid())
-  name     String
-  email    String  @unique
+  id          String    @id @default(uuid())
+  oauthId     String?   
+  name        String
+  email       String    @unique
+  provider    String?   
+  profilePic  String?   
+  lastLogin   DateTime? 
   appointments Appointment[]
 }
 
@@ -39,8 +83,10 @@ model Appointment {
   id           String   @id @default(uuid())
   user         User     @relation(fields: [userId], references: [id])
   userId       String
+  userName     String
   doctor       Doctor   @relation(fields: [doctorId], references: [id])
   doctorId     String
+  doctorName   String
   Date         DateTime
   timing       String?
   message      String?

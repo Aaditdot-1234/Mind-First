@@ -77,6 +77,7 @@ export function Navbar() {
         </HoverCard>
         {/* <a className="hover:border-b-[3px] hover:border-primary/90 hover:text-primary/90 text-[20px] font-medium text-[#646cff] py-[18px]" href="/recommendation">Recommendation</a> */}
         <a className="hover:border-b-[3px] hover:border-primary/90 hover:text-primary/90 text-[20px] font-medium text-[#646cff] py-[18px]" href="/About">About</a>
+        <a className="hover:border-b-[3px] hover:border-primary/90 hover:text-primary/90 text-[20px] font-medium text-[#646cff] py-[18px]" href="/Profile">Profile</a>
       </div>
       {!session?.user ? (
         <div className="mr-8">

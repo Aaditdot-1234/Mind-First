@@ -1,6 +1,6 @@
 import React from 'react'
-import VideoCard from '../user_ex/Elements/videocard';
-import videos from '../lib/yogaData';
+import VideoCard from '../Elements/videocard';
+import videos from '@/app/lib/yogaData';
 import {
   Carousel,
   CarouselContent,
